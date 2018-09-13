@@ -1,10 +1,10 @@
-﻿using MVVMHookupDemo.Services;
+﻿using MVVMCommsDemo.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using Zza.Data;
 
-namespace MVVMHookupDemo.Customers
+namespace MVVMCommsDemo.Customers
 {
     internal sealed class CustomerListViewModel
     {

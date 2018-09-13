@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 
-namespace MVVMHookupDemo
+namespace MVVMCommsDemo
 {
     public class RelayCommand : ICommand
     {

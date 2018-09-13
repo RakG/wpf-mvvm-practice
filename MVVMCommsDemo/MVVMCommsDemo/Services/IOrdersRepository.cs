@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Zza.Data;
 
-namespace MVVMHookupDemo.Services
+namespace MVVMCommsDemo.Services
 {
     public interface IOrdersRepository
     {

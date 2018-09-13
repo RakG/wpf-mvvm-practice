@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MVVMHookupDemo.Properties
+namespace MVVMCommsDemo.Properties
 {
 
 

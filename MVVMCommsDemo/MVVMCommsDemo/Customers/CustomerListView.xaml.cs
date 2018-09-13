@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace MVVMHookupDemo.Customers
+namespace MVVMCommsDemo.Customers
 {
     /// <summary>
     /// Interaction logic for CustomerListView.xaml

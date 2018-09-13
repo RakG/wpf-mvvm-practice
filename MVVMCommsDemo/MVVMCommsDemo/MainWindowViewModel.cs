@@ -1,6 +1,6 @@
-﻿using MVVMHookupDemo.Customers;
+﻿using MVVMCommsDemo.Customers;
 
-namespace MVVMHookupDemo
+namespace MVVMCommsDemo
 {
     internal sealed class MainWindowViewModel
     {

@@ -1,19 +1,19 @@
-﻿<Window x:Class="MVVMHookupDemo.MainWindow"
+﻿<Window x:Class="MVVMCommsDemo.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:MVVMHookupDemo"
-        xmlns:Customers="clr-namespace:MVVMHookupDemo.Customers"
+        xmlns:local="clr-namespace:MVVMCommsDemo"
+        xmlns:Customers="clr-namespace:MVVMCommsDemo.Customers"
         Title="MainWindow"
         Height="350"
         Width="525">
-    <Window.DataContext>
-        <local:MainWindowViewModel />
-    </Window.DataContext>
     <Window.Resources>
         <DataTemplate DataType="{x:Type Customers:CustomerListViewModel}">
             <Customers:CustomerListView />
         </DataTemplate>
     </Window.Resources>
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
     <Grid>
         <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
