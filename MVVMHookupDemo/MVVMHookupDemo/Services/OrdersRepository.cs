@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
 using Zza.Data;
-namespace ZzaDashboard.Services
+namespace MVVMHookupDemo.Services
 {
     public class OrdersRepository : IOrdersRepository
     {
