@@ -9,7 +9,7 @@ namespace MVVMHookupDemo.Customers
     {
         public CustomerListView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }
