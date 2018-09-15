@@ -6,6 +6,6 @@
         Height="350"
         Width="525">
     <Grid>
-        <Customers:CustomerListView/>
+        <Customers:CustomerListView />
     </Grid>
 </Window>

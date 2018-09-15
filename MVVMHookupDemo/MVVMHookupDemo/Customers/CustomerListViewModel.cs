@@ -10,7 +10,7 @@ namespace MVVMHookupDemo.Customers
     {
         public ObservableCollection<Customer> Customers { get; set; }
 
-        private ICustomersRepository _repo = new CustomersRepository();
+        private readonly ICustomersRepository _repository = new CustomersRepository();
 
         public CustomerListViewModel()
         {
@@ -19,7 +19,7 @@ namespace MVVMHookupDemo.Customers
                 return;
             }
 
-            Customers = new ObservableCollection<Customer>(_repo.GetCustomersAsync().Result);
+            Customers = new ObservableCollection<Customer>(_repository.GetCustomersAsync().Result);
         }
     }
 }
