@@ -1,106 +1,67 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Input;
 
 namespace MVVMCommsDemo
 {
     public class RelayCommand : ICommand
     {
-        Action _TargetExecuteMethod;
-        Func<bool> _TargetCanExecuteMethod;
+        private readonly Action TargetExecuteMethod;
+        private readonly Func<bool> TargetCanExecuteMethod;
 
-        public RelayCommand(Action executeMethod)
+        public RelayCommand(Action targetExecuteMethod, Func<bool> targetCanExecuteMethod = null)
         {
-            _TargetExecuteMethod = executeMethod;
-        }
-
-        public RelayCommand(Action executeMethod, Func<bool> canExecuteMethod)
-        {
-            _TargetExecuteMethod = executeMethod;
-            _TargetCanExecuteMethod = canExecuteMethod;
+            this.TargetExecuteMethod = targetExecuteMethod ?? throw new ArgumentNullException(nameof(targetExecuteMethod));
+            this.TargetCanExecuteMethod = targetCanExecuteMethod;
         }
 
         public void RaiseCanExecuteChanged()
         {
             CanExecuteChanged(this, EventArgs.Empty);
         }
-        #region ICommand Members
 
         bool ICommand.CanExecute(object parameter)
         {
-            if (_TargetCanExecuteMethod != null)
-            {
-                return _TargetCanExecuteMethod();
-            }
-            if (_TargetExecuteMethod != null)
-            {
-                return true;
-            }
-            return false;
+            return this.TargetCanExecuteMethod != null ? this.TargetCanExecuteMethod() : true;
         }
 
-        // Beware - should use weak references if command instance lifetime is longer than lifetime of UI objects that get hooked up to command
-        // Prism commands solve this in their implementation
+        // Beware - should use weak references if command instance lifetime is longer than lifetime of UI objects
+        // that get hooked up to command. Prism commands solve this in their implementation.
         public event EventHandler CanExecuteChanged = delegate { };
 
         void ICommand.Execute(object parameter)
         {
-            if (_TargetExecuteMethod != null)
-            {
-                _TargetExecuteMethod();
-            }
+            this.TargetExecuteMethod();
         }
-        #endregion
     }
 
     public class RelayCommand<T> : ICommand
     {
-        Action<T> _TargetExecuteMethod;
-        Func<T, bool> _TargetCanExecuteMethod;
+        private readonly Action<T> TargetExecuteMethod;
+        private readonly Func<T, bool> TargetCanExecuteMethod;
 
-        public RelayCommand(Action<T> executeMethod)
+        public RelayCommand(Action<T> targetExecuteMethod, Func<T, bool> targetCanExecuteMethod = null)
         {
-            _TargetExecuteMethod = executeMethod;
+            this.TargetExecuteMethod = targetExecuteMethod ?? throw new ArgumentNullException(nameof(targetExecuteMethod));
+            this.TargetCanExecuteMethod = targetCanExecuteMethod;
         }
 
-        public RelayCommand(Action<T> executeMethod, Func<T,bool> canExecuteMethod)
+        public void RaiseCanExecuteChanged()
         {
-            _TargetExecuteMethod = executeMethod;
-            _TargetCanExecuteMethod = canExecuteMethod;
+            CanExecuteChanged(this, EventArgs.Empty);
         }
-
-        public void RaiseCanExecuteChanged() 
-        {
-             CanExecuteChanged(this, EventArgs.Empty); 
-        }
-        #region ICommand Members
 
         bool ICommand.CanExecute(object parameter)
         {
-            if (_TargetCanExecuteMethod != null)
-            {
-                T tparm = (T)parameter;
-                return _TargetCanExecuteMethod(tparm);
-            }
-            if (_TargetExecuteMethod != null)
-            {
-                return true;
-            }
-            return false;
+            return this.TargetCanExecuteMethod != null ? this.TargetCanExecuteMethod((T)parameter) : true;
         }
 
-        // Beware - should use weak references if command instance lifetime is longer than lifetime of UI objects that get hooked up to command
-        // Prism commands solve this in their implementation
+        // Beware - should use weak references if command instance lifetime is longer than lifetime of UI objects
+        // that get hooked up to command. Prism commands solve this in their implementation.
         public event EventHandler CanExecuteChanged = delegate { };
 
         void ICommand.Execute(object parameter)
         {
-            if (_TargetExecuteMethod != null)
-            {
-                _TargetExecuteMethod((T)parameter);
-            }
+            this.TargetExecuteMethod((T)parameter);
         }
-        #endregion
     }
 }
