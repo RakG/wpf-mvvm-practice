@@ -22,7 +22,7 @@ namespace MVVMCommsDemo
     {
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

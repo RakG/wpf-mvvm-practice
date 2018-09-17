@@ -3,16 +3,20 @@ using System.Windows.Input;
 
 namespace MVVMCommsDemo
 {
-    public class RelayCommand : ICommand
+    internal sealed class RelayCommand : ICommand
     {
-        private readonly Action TargetExecuteMethod;
-        private readonly Func<bool> TargetCanExecuteMethod;
+        private readonly Action targetExecuteMethod;
+        private readonly Func<bool> targetCanExecuteMethod;
 
         public RelayCommand(Action targetExecuteMethod, Func<bool> targetCanExecuteMethod = null)
         {
-            this.TargetExecuteMethod = targetExecuteMethod ?? throw new ArgumentNullException(nameof(targetExecuteMethod));
-            this.TargetCanExecuteMethod = targetCanExecuteMethod;
+            this.targetExecuteMethod = targetExecuteMethod ?? throw new ArgumentNullException(nameof(targetExecuteMethod));
+            this.targetCanExecuteMethod = targetCanExecuteMethod;
         }
+
+        // Beware - should use weak references if command instance lifetime is longer than lifetime of UI objects
+        // that get hooked up to command. Prism commands solve this in their implementation.
+        public event EventHandler CanExecuteChanged = delegate { };
 
         public void RaiseCanExecuteChanged()
         {
@@ -21,29 +25,29 @@ namespace MVVMCommsDemo
 
         bool ICommand.CanExecute(object parameter)
         {
-            return this.TargetCanExecuteMethod != null ? this.TargetCanExecuteMethod() : true;
+            return this.targetCanExecuteMethod != null ? this.targetCanExecuteMethod() : true;
         }
-
-        // Beware - should use weak references if command instance lifetime is longer than lifetime of UI objects
-        // that get hooked up to command. Prism commands solve this in their implementation.
-        public event EventHandler CanExecuteChanged = delegate { };
 
         void ICommand.Execute(object parameter)
         {
-            this.TargetExecuteMethod();
+            this.targetExecuteMethod();
         }
     }
 
-    public class RelayCommand<T> : ICommand
+    internal sealed class RelayCommand<T> : ICommand
     {
-        private readonly Action<T> TargetExecuteMethod;
-        private readonly Func<T, bool> TargetCanExecuteMethod;
+        private readonly Action<T> targetExecuteMethod;
+        private readonly Func<T, bool> targetCanExecuteMethod;
 
         public RelayCommand(Action<T> targetExecuteMethod, Func<T, bool> targetCanExecuteMethod = null)
         {
-            this.TargetExecuteMethod = targetExecuteMethod ?? throw new ArgumentNullException(nameof(targetExecuteMethod));
-            this.TargetCanExecuteMethod = targetCanExecuteMethod;
+            this.targetExecuteMethod = targetExecuteMethod ?? throw new ArgumentNullException(nameof(targetExecuteMethod));
+            this.targetCanExecuteMethod = targetCanExecuteMethod;
         }
+
+        // Beware - should use weak references if command instance lifetime is longer than lifetime of UI objects
+        // that get hooked up to command. Prism commands solve this in their implementation.
+        public event EventHandler CanExecuteChanged = delegate { };
 
         public void RaiseCanExecuteChanged()
         {
@@ -52,16 +56,12 @@ namespace MVVMCommsDemo
 
         bool ICommand.CanExecute(object parameter)
         {
-            return this.TargetCanExecuteMethod != null ? this.TargetCanExecuteMethod((T)parameter) : true;
+            return this.targetCanExecuteMethod != null ? this.targetCanExecuteMethod((T)parameter) : true;
         }
-
-        // Beware - should use weak references if command instance lifetime is longer than lifetime of UI objects
-        // that get hooked up to command. Prism commands solve this in their implementation.
-        public event EventHandler CanExecuteChanged = delegate { };
 
         void ICommand.Execute(object parameter)
         {
-            this.TargetExecuteMethod((T)parameter);
+            this.targetExecuteMethod((T)parameter);
         }
     }
 }
