@@ -2,6 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Zza.Data;
@@ -30,18 +31,22 @@ namespace MVVMCommsDemo.Customers
 
         public CustomerListViewModel()
         {
+            this.DeleteCommand = new RelayCommand(this.OnDelete, this.CanDelete);
+        }
+
+        public async Task LoadCustomers()
+        {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
             {
                 return;
             }
 
-            this.Customers = new ObservableCollection<Customer>(this.repository.GetCustomersAsync().Result);
-            this.DeleteCommand = new RelayCommand(this.OnDelete, this.CanDelete);
+            this.Customers = new ObservableCollection<Customer>(await this.repository.GetCustomersAsync());
         }
 
         private void OnDelete()
         {
-            this.Customers.Remove(this.SelectedCustomer);
+            this.Customers?.Remove(this.SelectedCustomer);
         }
 
         private bool CanDelete()
