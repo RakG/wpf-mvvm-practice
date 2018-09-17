@@ -34,7 +34,7 @@ namespace MVVMCommsDemo.Customers
             this.DeleteCommand = new RelayCommand(this.OnDelete, this.CanDelete);
         }
 
-        public async Task LoadCustomers()
+        public async void LoadCustomers()
         {
             if (DesignerProperties.GetIsInDesignMode(new DependencyObject()))
             {
