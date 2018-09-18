@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZzaDesktop
 {
-    internal sealed class CustomerListViewModel
+    internal sealed class CustomerListViewModel : BindableBase
     {
     }
 }

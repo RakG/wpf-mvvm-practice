@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ZzaDesktop
+﻿namespace ZzaDesktop
 {
-    internal sealed class OrderViewModel
+    internal sealed class OrderViewModel : BindableBase
     {
     }
 }
