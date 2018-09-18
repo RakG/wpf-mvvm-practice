@@ -5,7 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
 using Zza.Data;
-namespace MVVMCommsDemo.Services
+
+namespace ZzaDesktop
 {
     internal sealed class OrdersRepository : IOrdersRepository
     {

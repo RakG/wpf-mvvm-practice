@@ -7,8 +7,8 @@
     <ProjectGuid>{0A69965E-2D37-440C-8B05-9E730224A8F9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MVVMCommsDemo</RootNamespace>
-    <AssemblyName>MVVMCommsDemo</AssemblyName>
+    <RootNamespace>ZzaDesktop</RootNamespace>
+    <AssemblyName>ZzaDesktop</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -63,22 +63,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Customers\CustomerListView.xaml.cs">
-      <DependentUpon>CustomerListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Customers\CustomerListViewModel.cs" />
-    <Compile Include="MainWindowViewModel.cs" />
-    <Compile Include="MvvmBehaviors.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Services\CustomersRepository.cs" />
     <Compile Include="Services\ICustomersRepository.cs" />
     <Compile Include="Services\IOrdersRepository.cs" />
     <Compile Include="Services\OrdersRepository.cs" />
-    <Compile Include="ShowNotificationMessageBehavior.cs" />
-    <Page Include="Customers\CustomerListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

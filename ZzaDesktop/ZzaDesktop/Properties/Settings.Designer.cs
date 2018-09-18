@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MVVMCommsDemo.Properties
+namespace ZzaDesktop.Properties
 {
 
 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Zza.Data;
 
-namespace MVVMCommsDemo.Services
+namespace ZzaDesktop
 {
     internal sealed class CustomersRepository : ICustomersRepository
     {
