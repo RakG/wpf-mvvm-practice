@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using Zza.Data;
 
 namespace ZzaDesktop
@@ -11,8 +12,10 @@ namespace ZzaDesktop
 
         public CustomerListViewModel()
         {
-             this.PlaceOrderCommand = new RelayCommand<Customer>(this.OnPlaceOrder);
+            this.PlaceOrderCommand = new RelayCommand<Customer>(this.OnPlaceOrder);
         }
+
+        public event Action<Guid> PlaceOrderRequested = delegate { };
 
         public ObservableCollection<Customer> Customers
         {
@@ -29,6 +32,7 @@ namespace ZzaDesktop
 
         private void OnPlaceOrder(Customer customer)
         {
+            PlaceOrderRequested(customer.Id);
         }
     }
 }

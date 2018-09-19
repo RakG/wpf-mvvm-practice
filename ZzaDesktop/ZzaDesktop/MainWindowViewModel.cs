@@ -4,15 +4,16 @@ namespace ZzaDesktop
 {
     internal sealed class MainWindowViewModel : BindableBase
     {
-        private readonly CustomerListViewModel customerViewModel = new CustomerListViewModel();
+        private readonly CustomerListViewModel customerListViewModel = new CustomerListViewModel();
         private readonly OrderPrepViewModel orderPrepViewModel = new OrderPrepViewModel();
         private readonly OrderViewModel orderViewModel = new OrderViewModel();
-        
+
         private BindableBase currentViewModel;
 
         public MainWindowViewModel()
         {
             this.NavigationCommand = new RelayCommand<string>(this.OnNavigation);
+            this.customerListViewModel.PlaceOrderRequested += this.NavigateToOrder;
         }
 
         public RelayCommand<string> NavigationCommand { get; private set; }
@@ -31,11 +32,17 @@ namespace ZzaDesktop
                     this.CurrentViewModel = this.orderPrepViewModel;
                     break;
                 case "Customers":
-                    this.CurrentViewModel = this.customerViewModel;
+                    this.CurrentViewModel = this.customerListViewModel;
                     break;
                 default:
                     throw new InvalidOperationException();
             }
+        }
+
+        private void NavigateToOrder(Guid customerId)
+        {
+            this.orderViewModel.CustomerId = customerId;
+            this.CurrentViewModel = this.orderViewModel;
         }
     }
 }
