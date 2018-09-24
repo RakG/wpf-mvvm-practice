@@ -7,6 +7,76 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="Add/Edit Customer View" />
+        <Grid VerticalAlignment="Top"
+              Margin="10,10,0,0"
+              HorizontalAlignment="Left"
+              DataContext="{Binding Customer}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label VerticalAlignment="Center"
+                   Grid.Row="0"
+                   Margin="3"
+                   HorizontalAlignment="Left"
+                   Grid.Column="0"
+                   Content="First Name:"/>
+            <TextBox Width="240"
+                     VerticalAlignment="Center"
+                     Text="{Binding FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     Grid.Row="0"
+                     Margin="3"
+                     Height="23"
+                     HorizontalAlignment="Left"
+                     Grid.Column="1"/>
+            <Label VerticalAlignment="Center"
+                   Grid.Row="1"
+                   Margin="3"
+                   HorizontalAlignment="Left"
+                   Grid.Column="0"
+                   Content="Last Name:"/>
+            <TextBox Width="240"
+                     VerticalAlignment="Center"
+                     Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     Grid.Row="1"
+                     Margin="3"
+                     Height="23"
+                     HorizontalAlignment="Left"
+                     Grid.Column="1"/>
+            <Label VerticalAlignment="Center"
+                   Grid.Row="2"
+                   Margin="3"
+                   HorizontalAlignment="Left"
+                   Grid.Column="0"
+                   Content="Email:"/>
+            <TextBox Width="240"
+                     VerticalAlignment="Center"
+                     Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     Grid.Row="2"
+                     Margin="3"
+                     Height="23"
+                     HorizontalAlignment="Left"
+                     Grid.Column="1"/>
+            <Label VerticalAlignment="Center"
+                   Grid.Row="3"
+                   Margin="3"
+                   HorizontalAlignment="Left"
+                   Grid.Column="0"
+                   Content="Phone:"/>
+            <TextBox Width="240"
+                     VerticalAlignment="Center"
+                     Text="{Binding Phone, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                     Grid.Row="3"
+                     Margin="3"
+                     Height="23"
+                     HorizontalAlignment="Left"
+                     Grid.Column="1"/>
+        </Grid>
     </Grid>
 </UserControl>
