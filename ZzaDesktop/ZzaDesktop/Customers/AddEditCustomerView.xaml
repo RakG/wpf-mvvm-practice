@@ -10,7 +10,7 @@
         <Grid VerticalAlignment="Top"
               Margin="10,10,0,0"
               HorizontalAlignment="Left"
-              DataContext="{Binding Customer}">
+              DataContext="{Binding EditableCustomer}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>

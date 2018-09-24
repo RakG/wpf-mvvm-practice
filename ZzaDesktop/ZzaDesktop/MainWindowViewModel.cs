@@ -46,14 +46,14 @@ namespace ZzaDesktop
         private void NavigateToAddCustomer(Customer customer)
         {
             this.addEditCustomerViewModel.EditMode = false;
-            this.addEditCustomerViewModel.Customer = customer;
+            this.addEditCustomerViewModel.SetCustomer(customer);
             this.CurrentViewModel = this.addEditCustomerViewModel;
         }
 
         private void NavigateToEditCustomer(Customer customer)
         {
             this.addEditCustomerViewModel.EditMode = true;
-            this.addEditCustomerViewModel.Customer = customer;
+            this.addEditCustomerViewModel.SetCustomer(customer);
             this.CurrentViewModel = this.addEditCustomerViewModel;
         }
 
