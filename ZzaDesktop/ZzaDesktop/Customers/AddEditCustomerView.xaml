@@ -5,12 +5,22 @@
              xmlns:local="clr-namespace:ZzaDesktop"
              x:Class="ZzaDesktop.AddEditCustomerView"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <local:NegatableBooleanToVisibilityConverter x:Key="VisibilityConverter" />
+        <local:NegatableBooleanToVisibilityConverter x:Key="NegativeVisibilityConverter" Negate="True" />
+    </UserControl.Resources>
     <Grid>
-        <Grid VerticalAlignment="Top"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"
+              DataContext="{Binding EditableCustomer}"
+              Height="Auto"
               Margin="10,10,0,0"
-              HorizontalAlignment="Left"
-              DataContext="{Binding EditableCustomer}">
+              HorizontalAlignment="Left">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -78,5 +88,30 @@
                      HorizontalAlignment="Left"
                      Grid.Column="1"/>
         </Grid>
+        <StackPanel Grid.Row="1"
+                    FlowDirection="RightToLeft"
+                    Height="Auto"
+                    Margin="10,10,0,0"
+                    HorizontalAlignment="Left"
+                    Orientation="Horizontal"
+                    Width="322">
+            <Button Content="Cancel"
+                    Command="{Binding CancelCommand}"
+                    Height="23"
+                    Margin="3"
+                    Width="75"/>
+            <Button Content="Add"
+                    Command="{Binding SaveCommand}"
+                    Height="23"
+                    Margin="3"
+                    Visibility="{Binding EditMode, Converter={StaticResource NegativeVisibilityConverter}}"
+                    Width="75"/>
+            <Button Content="Save"
+                    Command="{Binding SaveCommand}"
+                    Height="23"
+                    Margin="3"
+                    Visibility="{Binding EditMode, Converter={StaticResource VisibilityConverter}}"
+                    Width="75"/>
+        </StackPanel>
     </Grid>
 </UserControl>

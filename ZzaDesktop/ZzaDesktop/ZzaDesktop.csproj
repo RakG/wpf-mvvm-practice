@@ -74,6 +74,7 @@
     <Compile Include="Customers\CustomerListViewModel.cs" />
     <Compile Include="Customers\SimpleEditableCustomer.cs" />
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Converters\NegatableBooleanToVisibilityConverter.cs" />
     <Compile Include="OrderPrep\OrderPrepView.xaml.cs">
       <DependentUpon>OrderPrepView.xaml</DependentUpon>
     </Compile>

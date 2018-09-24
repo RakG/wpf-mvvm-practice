@@ -18,6 +18,7 @@ namespace ZzaDesktop
             this.customerListViewModel.AddCustomerRequested += this.NavigateToAddCustomer;
             this.customerListViewModel.EditCustomerRequested += this.NavigateToEditCustomer;
             this.customerListViewModel.PlaceOrderRequested += this.NavigateToOrder;
+            this.addEditCustomerViewModel.Done += this.NavigateToCustomerList;
         }
 
         public RelayCommand<string> NavigationCommand { get; private set; }
@@ -61,6 +62,11 @@ namespace ZzaDesktop
         {
             this.orderViewModel.CustomerId = customerId;
             this.CurrentViewModel = this.orderViewModel;
+        }
+
+        private void NavigateToCustomerList()
+        {
+            this.CurrentViewModel = this.customerListViewModel;
         }
     }
 }
