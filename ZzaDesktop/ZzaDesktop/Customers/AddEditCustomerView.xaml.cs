@@ -3,11 +3,11 @@
 namespace ZzaDesktop
 {
     /// <summary>
-    /// Interaction logic for CustomerListView.xaml
+    /// Interaction logic for AddEditCustomerView.xaml
     /// </summary>
-    public partial class CustomerListView : UserControl
+    public partial class AddEditCustomerView : UserControl
     {
-        public CustomerListView()
+        public AddEditCustomerView()
         {
             this.InitializeComponent();
         }

@@ -15,7 +15,22 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
-        <DataGrid AutoGenerateColumns="False"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"
+                    Background="WhiteSmoke"
+                    Height="50"
+                    Orientation="Horizontal">
+            <Button VerticalAlignment="Center"
+                    Command="{Binding AddCustomerCommand}"
+                    Content="Add Customer"
+                    Margin="10 5 5 5"
+                    Padding="5" />
+        </StackPanel>
+        <DataGrid Grid.Row="1"
+                  AutoGenerateColumns="False"
                   ItemsSource="{Binding Customers}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding FullName}"
@@ -26,7 +41,19 @@
                             <Button Command="{Binding DataContext.PlaceOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                     CommandParameter="{Binding}"
                                     Content="Place Order"
-                                    Margin="5" />
+                                    Margin="5"
+                                    Padding="5"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding DataContext.EditCustomerCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    CommandParameter="{Binding}"
+                                    Content="Edit"
+                                    Margin="5"
+                                    Padding="5"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
