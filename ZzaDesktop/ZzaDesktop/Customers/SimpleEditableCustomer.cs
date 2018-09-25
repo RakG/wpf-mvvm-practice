@@ -1,9 +1,10 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Zza.Data;
 
 namespace ZzaDesktop
 {
-    internal sealed class SimpleEditableCustomer : BindableBase
+    internal sealed class SimpleEditableCustomer : ValidatableBindableBase
     {
         private Guid id;
         private string firstName;
@@ -30,24 +31,28 @@ namespace ZzaDesktop
             set => this.SetProperty(ref this.id, value);
         }
 
+        [Required]
         public string FirstName
         {
             get => this.firstName;
             set => this.SetProperty(ref this.firstName, value);
         }
 
+        [Required]
         public string LastName
         {
             get => this.lastName;
             set => this.SetProperty(ref this.lastName, value);
         }
 
+        [EmailAddress]
         public string Email
         {
             get => this.email;
             set => this.SetProperty(ref this.email, value);
         }
 
+        [Phone]
         public string Phone
         {
             get => this.phone;

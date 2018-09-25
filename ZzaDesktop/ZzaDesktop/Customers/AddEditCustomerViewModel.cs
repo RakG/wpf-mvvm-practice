@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using Zza.Data;
 
 namespace ZzaDesktop
@@ -35,7 +36,19 @@ namespace ZzaDesktop
         public void SetCustomer(Customer customer)
         {
             this.customer = customer;
+
+            if (this.EditableCustomer != null)
+            {
+                this.EditableCustomer.ErrorsChanged -= this.RaiseOnErrorsChanged;
+            }
+
             this.EditableCustomer = new SimpleEditableCustomer(customer, this.editMode);
+            this.EditableCustomer.ErrorsChanged += this.RaiseOnErrorsChanged;
+        }
+
+        private void RaiseOnErrorsChanged(object sender, DataErrorsChangedEventArgs e)
+        {
+            this.SaveCommand.RaiseCanExecuteChanged();
         }
 
         private void OnCancel()
@@ -50,7 +63,7 @@ namespace ZzaDesktop
 
         private bool CanSave()
         {
-            return true;
+            return !this.EditableCustomer.HasErrors;
         }
     }
 }
