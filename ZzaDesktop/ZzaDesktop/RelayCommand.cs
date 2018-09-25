@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace ZzaDesktop
 {
-    internal sealed class RelayCommand : ICommand
+    public sealed class RelayCommand : ICommand
     {
         private readonly Action targetExecuteMethod;
         private readonly Func<bool> targetCanExecuteMethod;
@@ -34,7 +34,7 @@ namespace ZzaDesktop
         }
     }
 
-    internal sealed class RelayCommand<T> : ICommand
+    public sealed class RelayCommand<T> : ICommand
     {
         private readonly Action<T> targetExecuteMethod;
         private readonly Func<T, bool> targetCanExecuteMethod;

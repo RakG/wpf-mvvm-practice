@@ -7,8 +7,9 @@ namespace ZzaDesktop
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(MainWindowViewModel mainWindowViewModel)
         {
+            this.DataContext = mainWindowViewModel;
             this.InitializeComponent();
         }
     }

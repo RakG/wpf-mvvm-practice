@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace ZzaDesktop
 {
-    internal abstract class ValidatableBindableBase : BindableBase, INotifyDataErrorInfo
+    public abstract class ValidatableBindableBase : BindableBase, INotifyDataErrorInfo
     {
         private readonly Dictionary<string, List<string>> errors = new Dictionary<string, List<string>>();
 

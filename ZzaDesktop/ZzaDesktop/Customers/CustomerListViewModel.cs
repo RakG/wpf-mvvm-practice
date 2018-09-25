@@ -4,14 +4,16 @@ using Zza.Data;
 
 namespace ZzaDesktop
 {
-    internal sealed class CustomerListViewModel : BindableBase
+    public sealed class CustomerListViewModel : BindableBase
     {
-        private readonly ICustomersRepository customersRepository = new CustomersRepository();
+        private readonly ICustomersRepository customersRepository;
 
         private ObservableCollection<Customer> customers;
 
-        public CustomerListViewModel()
+        public CustomerListViewModel(ICustomersRepository customersRepository)
         {
+            this.customersRepository = customersRepository;
+
             this.AddCustomerCommand = new RelayCommand(this.OnAddCustomer);
             this.EditCustomerCommand = new RelayCommand<Customer>(this.OnEditCustomer);
             this.PlaceOrderCommand = new RelayCommand<Customer>(this.OnPlaceOrder);

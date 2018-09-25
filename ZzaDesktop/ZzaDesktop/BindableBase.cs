@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace ZzaDesktop
 {
-    internal abstract class BindableBase : INotifyPropertyChanged
+    public abstract class BindableBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 

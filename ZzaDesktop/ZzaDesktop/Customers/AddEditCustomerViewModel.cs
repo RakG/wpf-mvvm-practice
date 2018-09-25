@@ -4,14 +4,18 @@ using Zza.Data;
 
 namespace ZzaDesktop
 {
-    internal sealed class AddEditCustomerViewModel : BindableBase
+    public sealed class AddEditCustomerViewModel : BindableBase
     {
+        private readonly ICustomersRepository customersRepository;
+
         private bool editMode;
         private Customer customer;
         private SimpleEditableCustomer editableCustomer;
 
-        public AddEditCustomerViewModel()
+        public AddEditCustomerViewModel(ICustomersRepository customersRepository)
         {
+            this.customersRepository = customersRepository;
+
             this.CancelCommand = new RelayCommand(this.OnCancel);
             this.SaveCommand = new RelayCommand(this.OnSave, this.CanSave);
         }
@@ -42,7 +46,7 @@ namespace ZzaDesktop
                 this.EditableCustomer.ErrorsChanged -= this.RaiseOnErrorsChanged;
             }
 
-            this.EditableCustomer = new SimpleEditableCustomer(customer, this.editMode);
+            this.EditableCustomer = new SimpleEditableCustomer(customer, this.EditMode);
             this.EditableCustomer.ErrorsChanged += this.RaiseOnErrorsChanged;
         }
 
@@ -56,8 +60,19 @@ namespace ZzaDesktop
             Done();
         }
 
-        private void OnSave()
+        private async void OnSave()
         {
+            this.EditableCustomer.Update(this.customer);
+
+            if (this.EditMode)
+            {
+                await this.customersRepository.UpdateCustomerAsync(this.customer);
+            }
+            else
+            {
+                await this.customersRepository.AddCustomerAsync(this.customer);
+            }
+
             Done();
         }
 

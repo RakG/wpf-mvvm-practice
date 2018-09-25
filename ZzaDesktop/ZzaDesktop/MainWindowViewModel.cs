@@ -3,17 +3,20 @@ using Zza.Data;
 
 namespace ZzaDesktop
 {
-    internal sealed class MainWindowViewModel : BindableBase
+    public sealed class MainWindowViewModel : BindableBase
     {
-        private readonly AddEditCustomerViewModel addEditCustomerViewModel = new AddEditCustomerViewModel();
-        private readonly CustomerListViewModel customerListViewModel = new CustomerListViewModel();
+        private readonly AddEditCustomerViewModel addEditCustomerViewModel;
+        private readonly CustomerListViewModel customerListViewModel;
         private readonly OrderPrepViewModel orderPrepViewModel = new OrderPrepViewModel();
         private readonly OrderViewModel orderViewModel = new OrderViewModel();
 
         private BindableBase currentViewModel;
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(AddEditCustomerViewModel addEditCustomerViewModel, CustomerListViewModel customerListViewModel)
         {
+            this.addEditCustomerViewModel = addEditCustomerViewModel;
+            this.customerListViewModel = customerListViewModel;
+
             this.NavigationCommand = new RelayCommand<string>(this.OnNavigation);
             this.customerListViewModel.AddCustomerRequested += this.NavigateToAddCustomer;
             this.customerListViewModel.EditCustomerRequested += this.NavigateToEditCustomer;

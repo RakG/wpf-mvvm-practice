@@ -4,7 +4,7 @@ using Zza.Data;
 
 namespace ZzaDesktop
 {
-    internal sealed class SimpleEditableCustomer : ValidatableBindableBase
+    public sealed class SimpleEditableCustomer : ValidatableBindableBase
     {
         private Guid id;
         private string firstName;
@@ -57,6 +57,24 @@ namespace ZzaDesktop
         {
             get => this.phone;
             set => this.SetProperty(ref this.phone, value);
+        }
+
+        internal void Update(Customer customer)
+        {
+            if (customer == null)
+            {
+                throw new ArgumentNullException(nameof(customer));
+            }
+
+            if (customer.Id != this.Id)
+            {
+                throw new InvalidOperationException("Customer IDs do not match");
+            }
+
+            customer.FirstName = this.FirstName;
+            customer.LastName = this.LastName;
+            customer.Email = this.Email;
+            customer.Phone = this.Phone;
         }
     }
 }
